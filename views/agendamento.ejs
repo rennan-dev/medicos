@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento - MedPortal</title>
+    <link rel="stylesheet" href="./../css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>MedPortal - Agendamentos</h1>
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="agendamento-page">
+        <section class="agendamento-section">
+            <h2>Marque sua consulta</h2>
+
+            <form action="/agendamento" method="POST" id="agendamento-form">
+                <label for="agendamento-date" class="agendamento-label">Selecione uma data:</label>
+                <input type="date" id="agendamento-date" name="data" class="agendamento-input" min="2024-01-01" max="2024-12-31" required>
+            
+                <label for="agendamento-time" class="agendamento-label">Selecione um horário:</label>
+                <select id="agendamento-time" name="hora" class="agendamento-input" required>
+                    <option value="">Escolha um horário</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                </select>
+            
+                <label for="medico-nome" class="agendamento-label">Escolha o médico:</label>
+                <select id="medico-nome" name="medico_nome" class="agendamento-input" required>
+                    <option value="">Selecione</option>
+                    <% medicos.forEach(medico => { %>
+                        <option value="<%= medico.nome_completo %>">Dr(a). <%= medico.nome_completo %></option>
+                    <% }) %>
+                </select>
+            
+                <h3>Dados do Paciente</h3>
+                <label for="client-name" class="agendamento-label">Nome:</label>
+                <input type="text" id="client-name" name="nome_cliente" class="agendamento-input" placeholder="Seu nome" required>
+            
+                <label for="client-phone" class="agendamento-label">Número de Contato:</label>
+                <input type="tel" id="client-phone" name="paciente_celular" class="agendamento-input" placeholder="00000000000" required>
+            
+                <button type="submit" class="agendamento-button">Confirmar Agendamento</button>
+            </form>            
+        </section>
+    </main>
+
+    <footer>
+        <p>MedPortal &copy; 2024. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
